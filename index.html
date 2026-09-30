@@ -15,7 +15,7 @@
 <style>
 .logo-center {
   position: fixed;
-  top: 10px;
+  top: calc(10px + 1cm);   /* moved down 1 cm so it no longer touches the hamburger */
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
@@ -58,6 +58,24 @@
     pointer-events:auto; bottom:70px; -webkit-overflow-scrolling:touch;
   }
   .video-card{flex:0 0 38vw; scroll-snap-align:center;}
+}
+
+/* ===== Big slide titles: break only between whole words, never inside a word ===== */
+.slide .title{
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  word-wrap:normal !important;
+  -webkit-hyphens:none !important; -ms-hyphens:none !important; hyphens:none !important;
+  white-space:normal !important;
+  max-width:100%;
+  box-sizing:border-box;
+  text-wrap:balance;               /* even lines when a title goes to 2-3 lines */
+}
+.slide .title span{ white-space:nowrap; } /* if letters/words are wrapped in spans, keep each word together */
+@media (max-width:768px){
+  /* size so the longest word (e.g. "Embroidery", "Wholesale") always fits the screen width */
+  .slide .title{ font-size:clamp(24px,9.5vw,60px) !important; line-height:1.15 !important; }
+  .slide .content{ padding-left:14px; padding-right:14px; box-sizing:border-box; }
 }
 </style>
 </head>
@@ -219,13 +237,13 @@
 
 <!-- ===== 7 framed videos ===== -->
 <div class="video-strip" id="videoStrip">
-<div class="video-card"><video src="video1.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video2.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video3.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video4.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video5.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video6.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-<div class="video-card"><video src="video7.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video1.mp4" poster="videos/posters/video1.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video2.mp4" poster="videos/posters/video2.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video3.mp4" poster="videos/posters/video3.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video4.mp4" poster="videos/posters/video4.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video5.mp4" poster="videos/posters/video5.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video6.mp4" poster="videos/posters/video6.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="videos/video7.mp4" poster="videos/posters/video7.jpg" autoplay muted loop playsinline preload="auto"></video></div>
 </div>
 <script>
 /* make sure muted autoplay starts on every browser */
