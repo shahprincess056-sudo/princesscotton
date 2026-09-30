@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space &amp; Sci-Fi Presentation Slider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Iceland&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== STAR CANVAS ========== -->
+<canvas id="starCanvas"></canvas>
+
+<!-- ========== SLIDER ========== -->
+<div class="slider" id="slider">
+
+  <!-- ── STATIC LAYER (always on top) ── -->
+  <div class="static-layer">
+
+    <!-- Top nav -->
+    <div class="top-nav">
+      <span class="brand">SR6</span>
+      <div class="nav-right">
+        <div class="nav-menu" id="navMenu">
+          <a href="#">Templates</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Prev / Next arrows -->
+    <button class="arrow arrow-prev" id="prevBtn">&#8249;</button>
+    <button class="arrow arrow-next" id="nextBtn">&#8250;</button>
+
+    <!-- Bottom bar -->
+    <div class="bottom-bar">
+      <div class="social">
+        <a href="#">fb</a> <span class="sep">/</span>
+        <a href="#">ig</a> <span class="sep">/</span>
+        <a href="#">yt</a>
+      </div>
+      <div class="counter">
+        <span class="cur">01</span> / 04
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+
+    <!-- Dot navigation -->
+    <div class="dots">
+      <span class="dot active" data-i="0"></span>
+      <span class="dot" data-i="1"></span>
+      <span class="dot" data-i="2"></span>
+      <span class="dot" data-i="3"></span>
+    </div>
+
+  </div><!-- /static-layer -->
+
+  <!-- ── SLIDES ── -->
+
+  <!-- SLIDE 1 — GalactiC / inspiration / red glow -->
+  <div class="slide active" data-idx="1">
+    <div class="slide-bg" style="background-image:url('images/slide5.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s0-tag">inspiration</p>
+      <h1 class="title red-glow" id="s0-title">Pricess Cotton</h1>
+      <p class="body-txt" id="s0-body">Create the most engaging website experience for your users, and take them on a trip through the stars with your beautiful designs</p>
+      <a href="#" class="cta-btn" id="s0-btn">get started</a>
+    </div>
+    <!-- Astronaut bottom left -->
+    <div class="astro astro-1" id="s0-astro"
+         style="background-image:url('images/.jpg');width:220px;height:90px;bottom:30px;left:calc(50% - 250px)"></div>
+  </div>
+
+
+
+
+  <!-- SLIDE 2 — Celestial / adventure / orange glow -->
+   <!-- SLIDE 3 — cosmos / exploration / red glow -->
+  <div class="slide" data-idx="2">
+    <div class="slide-bg" style="background-image:url('images/slide4.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s2-tag">exploration</p>
+      <h1 class="title red-glow" id="s2-title">cosmos</h1>
+      <p class="body-txt" id="s2-body">Slider Revolution allows you to create truly awe inspiring designs that will take your users on a journey through the cosmos.</p>
+      <a href="#" class="cta-btn" id="s2-btn">get started</a>
+    </div>
+    <div class="astro astro-3" id="s2-astro"
+         style="background-image:url('images/.jpg');width:200px;height:90px;bottom:30px;left:calc(50% - 230px)"></div>
+  </div>
+
+
+  <!-- SLIDE 3 — cosmos / exploration / red glow -->
+  <div class="slide" data-idx="1">
+    <div class="slide-bg" style="background-image:url('images/slide2.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s2-tag">exploration</p>
+      <h1 class="title red-glow" id="s2-title">cosmos</h1>
+      <p class="body-txt" id="s2-body">Slider Revolution allows you to create truly awe inspiring designs that will take your users on a journey through the cosmos.</p>
+      <a href="#" class="cta-btn" id="s2-btn">get started</a>
+    </div>
+    <div class="astro astro-3" id="s2-astro"
+         style="background-image:url('images/.jpg');width:200px;height:90px;bottom:30px;left:calc(50% - 230px)"></div>
+  </div>
+
+  <!-- SLIDE 4 — the quest / for a new world / green glow -->
+  
+<div class="slide" data-idx="3">
+    <div class="slide-bg" style="background-image:url('images/slide3.jpg');filter:hue-rotate(110deg) brightness(0.75) saturate(0.8)"></div>
+    
+
+<div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s3-tag">for a new world</p>
+      <h1 class="title green-glow" id="s3-title">the quest</h1>
+      <p class="body-txt" id="s3-body">Join the quest to create the ultimate website design with Slider Revolution. The user-friendly interface makes it easy to create sliders that are out of this world</p>
+      <a href="#" class="cta-btn" id="s3-btn">get started</a>
+    </div>
+    
+
+<div class="astro astro-4" id="s3-astro"
+         style="background-image:url('images/.jpg');width:190px;height:88px;bottom:30px;left:calc(50% - 210px);filter:hue-rotate(110deg) brightness(0.75)"></div>
+  </div>
+
+</div><!-- /slider -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- SLIDE 1 — GalactiC / inspiration / red glow -->
+  <div class="slide active" data-idx="1">
+    <div class="slide-bg" style="background-image:url('images/slide5.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s0-tag">inspiration</p>
+      <h1 class="title red-glow" id="s0-title">Pricess Cotton</h1>
+      <p class="body-txt" id="s0-body">Create the most engaging website experience for your users, and take them on a trip through the stars with your beautiful designs</p>
+      <a href="#" class="cta-btn" id="s0-btn">get started</a>
+    </div>
+    <!-- Astronaut bottom left -->
+    <div class="astro astro-5" id="s0-astro"
+         style="background-image:url('images/.jpg');width:220px;height:90px;bottom:30px;left:calc(50% - 250px)"></div>
+  </div>
+
+
+
+
+  <!-- SLIDE 2 — Celestial / adventure / orange glow -->
+   <!-- SLIDE 3 — cosmos / exploration / red glow -->
+  <div class="slide" data-idx="2">
+    <div class="slide-bg" style="background-image:url('images/slide4.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s2-tag">exploration</p>
+      <h1 class="title red-glow" id="s2-title">cosmos</h1>
+      <p class="body-txt" id="s2-body">Slider Revolution allows you to create truly awe inspiring designs that will take your users on a journey through the cosmos.</p>
+      <a href="#" class="cta-btn" id="s2-btn">get started</a>
+    </div>
+    <div class="astro astro-6" id="s2-astro"
+         style="background-image:url('images/.jpg');width:200px;height:90px;bottom:30px;left:calc(50% - 230px)"></div>
+  </div>
+
+
+  <!-- SLIDE 3 — cosmos / exploration / red glow -->
+  <div class="slide" data-idx="1">
+    <div class="slide-bg" style="background-image:url('images/slide2.jpg')"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s2-tag">exploration</p>
+      <h1 class="title red-glow" id="s2-title">cosmos</h1>
+      <p class="body-txt" id="s2-body">Slider Revolution allows you to create truly awe inspiring designs that will take your users on a journey through the cosmos.</p>
+      <a href="#" class="cta-btn" id="s2-btn">get started</a>
+    </div>
+    <div class="astro astro-7" id="s2-astro"
+         style="background-image:url('images/.jpg');width:200px;height:90px;bottom:30px;left:calc(50% - 230px)"></div>
+  </div>
+
+  <!-- SLIDE 4 — the quest / for a new world / green glow -->
+  
+<div class="slide" data-idx="3">
+    <div class="slide-bg" style="background-image:url('images/slide3.jpg');filter:hue-rotate(110deg) brightness(0.75) saturate(0.8)"></div>
+    
+
+<div class="vignette"></div>
+    <div class="content">
+      <p class="tag" id="s3-tag">for a new world</p>
+      <h1 class="title green-glow" id="s3-title">the quest</h1>
+      <p class="body-txt" id="s3-body">Join the quest to create the ultimate website design with Slider Revolution. The user-friendly interface makes it easy to create sliders that are out of this world</p>
+      <a href="#" class="cta-btn" id="s3-btn">get started</a>
+    </div>
+    
+
+<div class="astro astro-8" id="s3-astro"
+         style="background-image:url('images/.jpg');width:190px;height:88px;bottom:30px;left:calc(50% - 210px);filter:hue-rotate(110deg) brightness(0.75)"></div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/script.js"></script>
+</body>
+</html>

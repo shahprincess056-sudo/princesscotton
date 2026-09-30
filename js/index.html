@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space & Sci‑Fi Presentation Slider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Iceland&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="starCanvas"></canvas>
+
+<div class="slider" id="slider">
+
+<div class="static-layer">
+<div class="top-nav">
+<span class="brand">SR6</span>
+<div class="nav-right">
+<div class="nav-menu" id="navMenu">
+<a href="#">Templates</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</div>
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</div>
+</div>
+
+<button class="arrow arrow-prev" id="prevBtn">&#8249;</button>
+<button class="arrow arrow-next" id="nextBtn">&#8250;</button>
+
+<div class="bottom-bar">
+<div class="social">
+<a href="#">fb</a> <span class="sep">/</span>
+<a href="#">ig</a> <span class="sep">/</span>
+<a href="#">yt</a>
+</div>
+<div class="counter"><span class="cur">01</span> / 07</div>
+</div>
+
+<div class="pbar"><div class="pfill" id="pfill"></div></div>
+
+<div class="dots">
+<span class="dot active" data-i="0"></span>
+<span class="dot" data-i="1"></span>
+<span class="dot" data-i="2"></span>
+<span class="dot" data-i="3"></span>
+<span class="dot" data-i="4"></span>
+<span class="dot" data-i="5"></span>
+<span class="dot" data-i="6"></span>
+</div>
+</div>
+
+<div class="slide active">
+<div class="slide-bg" style="background-image:url('images/slide5.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">inspiration</p>
+<h1 class="title red-glow">Princess Cotton</h1>
+<p class="body-txt">Create the most engaging website experience for your users.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide4.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">exploration</p>
+<h1 class="title red-glow">Cosmos</h1>
+<p class="body-txt">Journey through the cosmos.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide2.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">adventure</p>
+<h1 class="title red-glow">Nebula</h1>
+<p class="body-txt">Beautiful interstellar scenes.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide3.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">new world</p>
+<h1 class="title green-glow">The Quest</h1>
+<p class="body-txt">Create sliders that are out of this world.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide5.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">future</p>
+<h1 class="title red-glow">Orbit</h1>
+<p class="body-txt">Additional slide 5.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide6.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">science</p>
+<h1 class="title red-glow">Galaxy</h1>
+<p class="body-txt">Additional slide 6.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+<div class="slide">
+<div class="slide-bg" style="background-image:url('images/slide7.jpg')"></div>
+<div class="vignette"></div>
+<div class="content">
+<p class="tag">discovery</p>
+<h1 class="title red-glow">Starlight</h1>
+<p class="body-txt">Additional slide 7.</p>
+<a href="#" class="cta-btn">get started</a>
+</div>
+</div>
+
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

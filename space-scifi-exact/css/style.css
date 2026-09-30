@@ -1,0 +1,464 @@
+/* ====================================================
+   SPACE & SCI-FI PRESENTATION SLIDER
+   Exact replica of sliderrevolution.com template
+   ==================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ── STAR CANVAS ── */
+#starCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── SLIDER CONTAINER ── */
+.slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── SLIDES ── */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slide.active       { opacity: 1; pointer-events: auto; }
+.slide.leaving      { opacity: 0; pointer-events: none; }
+
+/* Transition animations controlled via JS class toggling */
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  will-change: transform;
+  /* Ken-Burns zoom handled via JS animation */
+}
+
+/* Dark vignette overlay — bottom heavy like the original */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.05) 35%,
+      rgba(0,0,0,0.55) 70%,
+      rgba(0,0,0,0.80) 100%),
+    linear-gradient(to right,
+      rgba(0,0,0,0.35) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(0,0,0,0.20) 100%);
+}
+
+/* ── SLIDE CONTENT — centred ── */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 85%;
+  max-width: 800px;
+  z-index: 5;
+  padding-bottom: 30px;
+}
+
+/* TAG LINE */
+.tag {
+  font-family: 'Iceland', cursive;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  padding-left: 7px;   /* compensate letter-spacing on last char */
+  margin-bottom: 14px;
+  /* animation state (hidden before active) */
+  opacity: 0;
+  transform: translateX(-135px);
+}
+
+/* BIG TITLE */
+.title {
+  font-family: 'Iceland', cursive;
+  font-weight: 400;
+  font-size: clamp(72px, 11vw, 150px);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin-bottom: 22px;
+  opacity: 0;
+  transform: translateX(-135px);
+}
+
+.red-glow    { text-shadow: rgba(255,0,0,0.64)   0px 2px 14px; }
+.orange-glow { text-shadow: rgba(255,150,0,0.40) 0px 2px 14px; }
+.green-glow  { text-shadow: rgba(72,255,0,0.28)  0px 2px 14px; }
+
+/* BODY TEXT */
+.body-txt {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(11px, 1.15vw, 14px);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  width: 70%;
+  margin: 0 auto 22px;
+  opacity: 0;
+  transform: translateX(-115px);
+}
+
+/* CTA BUTTON */
+.cta-btn {
+  display: inline-block;
+  font-family: 'Iceland', cursive;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 0 20px;
+  line-height: 36px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: transparent;
+  opacity: 0;
+  transform: translateX(-90px);
+  transition: background 0.3s, border-color 0.3s;
+}
+.cta-btn:hover {
+  background: rgba(0,0,0,0);
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.07);
+}
+
+/* ── ANIMATION CLASSES (applied when slide is active) ── */
+/* Each element animates in with a slight delay cascade */
+
+.slide.active .tag {
+  animation: slideInLeft 0.7s 0.15s cubic-bezier(.25,.46,.45,.94) both;
+}
+.slide.active .title {
+  animation: splitCharsIn 0.85s 0.05s cubic-bezier(.25,.46,.45,.94) both;
+}
+.slide.active .body-txt {
+  animation: slideInLeft 0.7s 0.35s cubic-bezier(.25,.46,.45,.94) both;
+}
+.slide.active .cta-btn {
+  animation: slideInLeft 0.7s 0.5s cubic-bezier(.25,.46,.45,.94) both;
+}
+.slide.active .astro {
+  animation: astroSlideIn 1.1s 0.1s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+/* Slides 2,3 animate from RIGHT */
+.slide[data-idx="1"].active .tag,
+.slide[data-idx="2"].active .tag,
+.slide[data-idx="3"].active .tag    { animation-name: slideInRight; }
+.slide[data-idx="1"].active .title,
+.slide[data-idx="2"].active .title,
+.slide[data-idx="3"].active .title  { animation-name: splitCharsInRight; }
+.slide[data-idx="1"].active .body-txt,
+.slide[data-idx="2"].active .body-txt,
+.slide[data-idx="3"].active .body-txt { animation-name: slideInRight; }
+.slide[data-idx="1"].active .cta-btn,
+.slide[data-idx="2"].active .cta-btn,
+.slide[data-idx="3"].active .cta-btn  { animation-name: slideInRight; }
+.slide[data-idx="1"].active .astro,
+.slide[data-idx="2"].active .astro,
+.slide[data-idx="3"].active .astro    { animation-name: astroSlideInRight; }
+
+@keyframes slideInLeft {
+  from { opacity:0; transform: translateX(-135px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity:0; transform: translateX(135px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes splitCharsIn {
+  from { opacity:0; transform: translateX(-135px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes splitCharsInRight {
+  from { opacity:0; transform: translateX(135px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes astroSlideIn {
+  from { opacity:0; transform: translateX(-275px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+@keyframes astroSlideInRight {
+  from { opacity:0; transform: translateX(275px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+
+/* ── ASTRONAUT FIGURES ── */
+.astro {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  z-index: 4;
+  /* position set inline per slide */
+}
+
+/* ── STATIC LAYER (always visible) ── */
+.static-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.static-layer > * { pointer-events: auto; }
+
+/* ── TOP NAV ── */
+.top-nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 0;
+  pointer-events: auto;
+}
+
+.brand {
+  font-family: 'Iceland', cursive;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-menu a {
+  font-family: 'Iceland', cursive;
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  transition: color 0.3s;
+}
+.nav-menu a:hover { color: #fff; }
+
+/* Hamburger — hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: #fff;
+  transition: width 0.3s;
+}
+.hamburger span:nth-child(2) { width: 19px; }
+
+/* ── PREV / NEXT ARROWS ── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+  z-index: 25;
+  pointer-events: auto;
+}
+.arrow:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.6);
+}
+.arrow-prev { left: 16px; }
+.arrow-next { right: 16px; }
+
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  pointer-events: auto;
+}
+
+.social {
+  font-family: 'Iceland', cursive;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  display: flex; align-items: center; gap: 6px;
+}
+.social a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.social a:hover { color: #fff; }
+.social .sep { color: #fff; }
+
+.counter {
+  font-family: 'Iceland', cursive;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.5px;
+}
+.counter .cur { color: #fff; font-weight: 700; }
+
+/* ── PROGRESS BAR ── */
+.pbar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  z-index: 30;
+}
+.pfill {
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,0.65);
+}
+
+/* ── DOTS ── */
+.dots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.dot.active {
+  background: #fff;
+  transform: scale(1.5);
+}
+
+/* ── SCAN-LINE TEXTURE (subtle CRT feel) ── */
+.slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.025) 2px,
+    rgba(0,0,0,0.025) 4px
+  );
+  pointer-events: none;
+  z-index: 18;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-menu { display: none; }
+  .hamburger { display: flex; }
+  .nav-menu.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; right: 20px;
+    background: rgba(0,0,0,0.88);
+    padding: 14px 22px;
+    border-radius: 8px;
+    gap: 4px;
+    z-index: 200;
+  }
+
+  .title { font-size: clamp(48px, 10vw, 90px); }
+  .body-txt { width: 88%; font-size: 12px; }
+  .arrow-prev { left: 6px; }
+  .arrow-next { right: 6px; }
+  .astro { display: none; }
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 42px; }
+  .tag { font-size: 10px; letter-spacing: 4px; }
+  .content { width: 92%; }
+}
+
+/* ── CHAR-SPLIT TITLE ANIMATION ── */
+.title .ch {
+  display: inline-block;
+  opacity: 0;
+  transform: perspective(600px) translateX(-141px);
+  animation: charIn 0.6s calc(0.05s * var(--i) + 0.05s) cubic-bezier(.25,.46,.45,.94) both;
+}
+
+.slide[data-idx="1"] .title .ch,
+.slide[data-idx="2"] .title .ch,
+.slide[data-idx="3"] .title .ch {
+  transform: perspective(600px) translateX(141px);
+  animation-name: charInRight;
+}
+
+@keyframes charIn {
+  from { opacity: 0; transform: perspective(600px) translateX(-141px); }
+  to   { opacity: 1; transform: perspective(600px) translateX(0); }
+}
+@keyframes charInRight {
+  from { opacity: 0; transform: perspective(600px) translateX(141px); }
+  to   { opacity: 1; transform: perspective(600px) translateX(0); }
+}
+
+/* When slide is no longer active, reset title so it can re-animate on return */
+.slide:not(.active) .title .ch {
+  animation: none;
+  opacity: 0;
+  transform: perspective(600px) translateX(-141px);
+}
+.slide[data-idx="1"]:not(.active) .title .ch,
+.slide[data-idx="2"]:not(.active) .title .ch,
+.slide[data-idx="3"]:not(.active) .title .ch {
+  transform: perspective(600px) translateX(141px);
+}
