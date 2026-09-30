@@ -4686,9 +4686,15 @@ first.parentNode.insertBefore(script, first);
 /* Logo fix: visible on phones + desktop */
 .header-item--logo .site-header__logo a.site-header__logo-link{display:flex!important;align-items:center;justify-content:center;width:auto!important;height:auto!important;padding-top:0!important;position:static!important}
 .site-header__logo-link image-element{display:block!important;opacity:1!important;visibility:visible!important;transform:none!important}
-.site-header__logo-link img.site-logo-img{display:block!important;opacity:1!important;visibility:visible!important;position:static!important;width:auto!important;height:auto!important;max-width:100%;max-height:44px}
-@media only screen and (max-width:768px){.header-item--logo{-webkit-box-flex:1 1 auto!important;-ms-flex:1 1 auto!important;flex:1 1 auto!important;text-align:center}.site-header__logo-link img.site-logo-img{max-width:190px}}
-@media only screen and (min-width:769px){.site-header__logo-link img.site-logo-img{max-height:90px}}
+.site-header__logo-link img.site-logo-img{display:block!important;opacity:1!important;visibility:visible!important;position:static!important;width:auto!important;height:auto!important;max-width:100%;max-height:37.4px}
+@media only screen and (max-width:768px){.header-item--logo{-webkit-box-flex:1 1 auto!important;-ms-flex:1 1 auto!important;flex:1 1 auto!important;text-align:center}.site-header__logo-link img.site-logo-img{max-width:161.5px}}
+@media only screen and (min-width:769px){.site-header__logo-link img.site-logo-img{max-height:76.5px}}
+</style><style>
+/* Logo centered on the screen (left-right), equal side columns */
+.header-layout.header-layout--center-drawer{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;align-items:center!important}
+.header-layout--center-drawer .header-item--left{grid-column:1!important;justify-self:start!important}
+.header-layout--center-drawer .header-item--logo{grid-column:2!important;justify-self:center!important;flex:0 0 auto!important;width:auto!important;margin:0 auto!important;text-align:center!important}
+.header-layout--center-drawer .header-item--icons{grid-column:3!important;justify-self:end!important}
 </style><div class="h1 site-header__logo" itemscope="" itemtype="http://schema.org/Organization">
       <a href="/" itemprop="url" class="site-header__logo-link" style="padding-top: 33.333333333333336%">
 <img class="site-logo-img" src="logo1.png" alt="The Princess Cotton UAE" width="570" height="133" loading="eager" itemprop="logo">
