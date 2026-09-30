@@ -30,16 +30,36 @@
 }
 
 
+
+/* ===== Video gallery strip (7 equal framed videos) ===== */
+.video-strip{
+  position:fixed; left:0; right:0; bottom:64px; z-index:20;
+  display:grid; grid-template-columns:repeat(7,1fr);
+  gap:clamp(10px,1.6vw,32px);              /* equal distance between videos */
+  padding:0 clamp(16px,2.4vw,46px);
+  pointer-events:none;
+}
+.video-card{
+  pointer-events:auto;
+  background:#e9e6df;                      /* border frame colour */
+  padding:clamp(6px,.7vw,13px);            /* border frame thickness */
+  box-shadow:0 6px 22px rgba(0,0,0,.45);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.video-card:hover{transform:translateY(-6px); box-shadow:0 12px 28px rgba(0,0,0,.6);}
+.video-card video{
+  display:block; width:100%;
+  aspect-ratio:4/5;                        /* same size for every video */
+  object-fit:cover; background:#000;
+}
+@media (max-width:900px){
+  .video-strip{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+    pointer-events:auto; bottom:70px; -webkit-overflow-scrolling:touch;
+  }
+  .video-card{flex:0 0 38vw; scroll-snap-align:center;}
+}
 </style>
-
-
-
-
-
-
-
-
-
 </head>
 <body>
 
@@ -197,6 +217,22 @@
 </div>
 <script src="js1/script.js"></script>
 
+<!-- ===== 7 framed videos ===== -->
+<div class="video-strip" id="videoStrip">
+<div class="video-card"><video src="video1.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video2.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video3.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video4.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video5.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video6.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="video-card"><video src="video7.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+</div>
+<script>
+/* make sure muted autoplay starts on every browser */
+document.querySelectorAll('#videoStrip video').forEach(v=>{v.muted=true;v.play().catch(()=>{});});
+</script>
+
+
 
 
 
@@ -260,7 +296,7 @@
 
 
   
-<img src="cdn/shop/files/logo1.png?v=1671629938&amp;width=540" alt="" srcset="cdn/shop/logo1.png 370w?v=1671629938&amp;width=370 170w, ../cdn/shop/files/logo1.png 540wg?v=1671629938&amp;width=540 540w" width="570" height="133" loading="eager" class="small--hide image-element" sizes="570px" itemprop="logo1">
+<img src="../cdn/shop/files/logo1.png?v=1671629938&amp;width=540" alt="" srcset="../cdn/shop/logo1.png 370w?v=1671629938&amp;width=370 170w, ../cdn/shop/files/logo1.png 540wg?v=1671629938&amp;width=540 540w" width="570" height="133" loading="eager" class="small--hide image-element" sizes="570px" itemprop="logo1">
   
 
 
